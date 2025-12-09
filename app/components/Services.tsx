@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { FaLaptopCode, FaPalette, FaEnvelope } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Services() {
   const ref = useRef<HTMLElement | null>(null);
@@ -62,12 +63,10 @@ export default function Services() {
 
   return (
     <section
-  id="services"
-  ref={ref as any}
-  style={{ minHeight: minHeight ? `${minHeight}px` : undefined }}
-  className="py-12 relative flex flex-col items-center justify-center overflow-hidden"
-
-      // dodatkowy gradient w klasie zamiast tailwind helperów, żeby precyzyjnie kontrolować przejście
+      id="services"
+      ref={ref as any}
+      style={{ minHeight: minHeight ? `${minHeight}px` : undefined }}
+      className="py-12 relative flex flex-col items-center justify-center overflow-hidden"
     >
       <div
         className="absolute inset-0 pointer-events-none"
@@ -90,7 +89,7 @@ export default function Services() {
         >
           <defs>
             <pattern id="diag-lines-lightblue" width="96" height="96" patternUnits="userSpaceOnUse">
-              <path d="M-12 12 L12 -12 M36 108 L108 36" stroke="rgba(6,30,60,0.02)" strokeWidth="1"/>
+              <path d="M-12 12 L12 -12 M36 108 L108 36" stroke="rgba(6,30,60,0.02)" strokeWidth="1" />
             </pattern>
           </defs>
 
@@ -127,13 +126,12 @@ export default function Services() {
         </div>
 
         <div className="mt-12">
-          <a
-            href="#contact"
-            id="services-cta-link"
+          <Link
+            href="/kontakt"
             className="px-8 py-3 bg-[#2563EB] text-white rounded-lg font-semibold hover:bg-[#1e40af] transition-transform transform hover:scale-105 inline-block"
           >
             Skontaktuj się
-          </a>
+          </Link>
         </div>
       </div>
 
