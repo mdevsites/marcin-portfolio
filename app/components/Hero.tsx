@@ -56,7 +56,7 @@ export default function Hero() {
   const stats: Tile[] = [
     { value: "50+", label: "Zrealizowanych projektów" },
     { value: "5", label: "Lat doświadczenia" },
-    { value: "24/7", label: "Wsparcie techniczne" },
+    { value: "24 / 7", label: "Wsparcie techniczne" },
   ];
 
   const icons: Tile[] = [
