@@ -113,7 +113,7 @@ export default function Navbar() {
         <div className="hidden md:flex gap-10">
           <NavItem label="Strona Główna" href="/#home" active={active === "home"} scrolled={scrolled} />
           <NavItem label="Usługi" href="/#services" active={active === "services"} scrolled={scrolled} />
-          <NavItem label="Portfolio" href="/portfolio" active={active === "portfolio"} scrolled={scrolled} />
+          <NavItem label="Portfolio" href="/portfolio" />
           <NavItem label="Kontakt" href="/kontakt" external />
         </div>
 
