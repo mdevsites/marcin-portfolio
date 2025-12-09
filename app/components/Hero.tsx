@@ -86,7 +86,7 @@ export default function Hero() {
       </div>
 
       {/* ZAWARTOŚĆ HERO */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 flex flex-col-reverse md:flex-row items-center md:justify-between w-full z-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 flex flex-col-reverse md:flex-row items-center md:justify-start md:space-x-10 w-full z-10">
         {/* LEWA STRONA - TEKST */}
         <div className="text-center md:text-left md:max-w-xl space-y-6 mt-10 md:mt-0 w-full">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white">
@@ -97,12 +97,11 @@ export default function Hero() {
           </p>
 
           {/* STATYSTYKI / IKONY */}
-          {/* Desktop: rząd, Mobile: pozioma karuzela */}
-          <div className="mt-10 flex md:flex-row flex-row md:space-x-6 space-x-4 overflow-x-auto md:overflow-visible py-2">
+          <div className="mt-10 flex md:flex-row flex-row overflow-x-auto md:overflow-visible py-2 justify-center md:justify-start px-2 md:px-0 gap-x-6 gap-y-4">
             {activeTiles.map((item, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 w-28 py-4 px-2 text-center flex flex-col items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm mr-2 md:mr-0"
+                className="flex-shrink-0 w-32 md:w-40 py-4 px-2 text-center flex flex-col items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm"
               >
                 <div
                   className={`transition-all duration-700 ${
@@ -126,7 +125,7 @@ export default function Hero() {
         </div>
 
         {/* PRAWA STRONA - OBRAZEK */}
-        <div className="mb-6 md:mb-0 md:ml-12 flex justify-center w-full md:w-auto">
+        <div className="flex justify-center w-full md:w-auto">
           <img
             src="/hero_illustration.png"
             alt="Hero illustration"
@@ -137,7 +136,7 @@ export default function Hero() {
 
       {/* OPINIE */}
       <div className="mt-8 md:mt-12 flex justify-center z-20 px-4">
-        <div className="relative w-full max-w-2xl px-4 sm:px-8 py-6 text-white text-center flex items-center">
+        <div className="relative w-full max-w-full md:max-w-7xl px-4 sm:px-8 py-6 text-white text-center flex items-center">
           <button
             onClick={() => changeOpinion(-1)}
             className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-white/10 transition"
