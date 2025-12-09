@@ -13,7 +13,7 @@ export default function CTA() {
         Skontaktuj się ze mną, aby omówić Twój projekt i otrzymać darmową wycenę.
       </p>
       <a
-        href="mailto:kontakt@marcin.dev"
+        href="mailto:m.devkontakt@gmail.com"
         className="bg-blue-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl shadow-lg hover:bg-blue-500 transition"
       >
         Napisz do mnie
