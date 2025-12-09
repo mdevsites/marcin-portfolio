@@ -43,14 +43,14 @@ export default function Hero() {
 
   // --- STATYSTYKI + IKONY ---
   const stats: Tile[] = [
-    { value: "50+", label: "Zrealizowanych projektów" },
-    { value: "5", label: "Lat doświadczenia" },
-    { value: "24/7", label: "Wsparcie techniczne" },
+    { value: "50+", label: "Zrealizowanych\nprojektów" },
+    { value: "5", label: "Lat\ndoświadczenia" },
+    { value: "24/7", label: "Wsparcie\ntechniczne" },
   ];
 
   const icons: Tile[] = [
-    { icon: "⚡", label: "Szybkie wdrożenia" },
-    { icon: "💰", label: "Konkurencyjne ceny" },
+    { icon: "⚡", label: "Szybkie\nwdrożenia" },
+    { icon: "💰", label: "Konkurencyjne\nceny" },
     { icon: "✅", label: "Profesjonalizm" },
   ];
 
@@ -97,11 +97,11 @@ export default function Hero() {
           </p>
 
           {/* STATYSTYKI / IKONY */}
-          <div className="mt-10 flex md:flex-row flex-row overflow-x-auto md:overflow-visible py-2 justify-center md:justify-start px-2 md:px-0 gap-x-6 gap-y-4">
+          <div className="mt-10 flex md:flex-row flex-row overflow-x-auto md:overflow-visible py-2 justify-center md:justify-start px-2 md:px-0 gap-4">
             {activeTiles.map((item, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 w-28 sm:w-32 md:w-40 py-4 px-3 text-center flex flex-col items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm"
+                className="flex-shrink-0 w-24 sm:w-28 md:w-36 py-3 px-2 text-center flex flex-col items-center justify-center rounded-lg"
               >
                 <div
                   className={`transition-all duration-700 ${
@@ -115,7 +115,7 @@ export default function Hero() {
                   <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                     {item.value ?? item.icon}
                   </div>
-                  <div className="mt-1 sm:mt-2 text-xs sm:text-sm md:text-base text-white/90">
+                  <div className="mt-1 sm:mt-2 text-xs sm:text-sm md:text-base text-white/90 whitespace-pre-line">
                     {item.label}
                   </div>
                 </div>
