@@ -82,7 +82,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28"
       style={{
         backgroundImage:
           "linear-gradient(to bottom, #0b1220 0%, #1e3a8a 60%, #60A5FA 100%)",
@@ -142,7 +142,7 @@ export default function Hero() {
       </div>
 
       {/* OPINIE */}
-      <div className="mt-12 flex justify-center z-20">
+      <div className="mt-12 flex justify-center z-20 px-4">
         <div className="relative bg-transparent px-8 py-6 rounded-2xl text-white text-center flex items-center max-w-7xl w-full mx-auto overflow-hidden">
           <button
             onClick={prevOpinion}
@@ -201,7 +201,7 @@ export default function Hero() {
 
       {/* STRZAŁKA DOWIEDZ SIĘ WIĘCEJ */}
       <div
-        className="absolute bottom-4 md:bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center mb-4 cursor-pointer group"
+        className="flex flex-col items-center mt-6 md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2 cursor-pointer group"
         onClick={() => {
           const el = document.getElementById("services");
           if (el) el.scrollIntoView({ behavior: "smooth" });
