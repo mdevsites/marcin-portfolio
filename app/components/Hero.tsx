@@ -43,14 +43,14 @@ export default function Hero() {
 
   // --- STATYSTYKI + IKONY ---
   const stats: Tile[] = [
-    { value: "50+", label: "Zrealizowanych\nprojektów" },
+    { value: "50+", label: "Zrealizowanych projektów" },
     { value: "5", label: "Lat\ndoświadczenia" },
-    { value: "24/7", label: "Wsparcie\ntechniczne" },
+    { value: "24 / 7", label: "Wsparcie\ntechniczne" },
   ];
 
   const icons: Tile[] = [
-    { icon: "⚡", label: "Szybkie\nwdrożenia" },
-    { icon: "💰", label: "Konkurencyjne\nceny" },
+    { icon: "⚡", label: "Szybkie wdrożenia" },
+    { icon: "💰", label: "Konkurencyjne ceny" },
     { icon: "✅", label: "Profesjonalizm" },
   ];
 
@@ -97,11 +97,11 @@ export default function Hero() {
           </p>
 
           {/* STATYSTYKI / IKONY */}
-          <div className="mt-10 flex md:flex-row flex-row overflow-x-auto md:overflow-visible py-2 justify-center md:justify-start px-2 md:px-0 gap-4">
+          <div className="mt-10 flex md:flex-row flex-row overflow-x-auto md:overflow-visible py-2 justify-center md:justify-start px-2 md:px-0 gap-x-4 gap-y-4">
             {activeTiles.map((item, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 w-24 sm:w-28 md:w-36 py-3 px-2 text-center flex flex-col items-center justify-center rounded-lg"
+                className="flex-shrink-0 w-28 sm:w-32 md:w-36 py-4 px-2 text-center flex flex-col items-center justify-center rounded-lg"
               >
                 <div
                   className={`transition-all duration-700 ${
@@ -136,30 +136,34 @@ export default function Hero() {
 
       {/* OPINIE */}
       <div className="mt-8 md:mt-12 flex justify-center z-20 px-4">
-        <div className="relative w-full max-w-full md:max-w-7xl px-4 sm:px-8 py-6 text-white text-center flex items-center">
+        <div className="relative w-full max-w-md md:max-w-3xl px-2 md:px-0 py-6 text-white text-center flex items-center">
+          {/* STRZAŁKA LEWA */}
           <button
             onClick={() => changeOpinion(-1)}
-            className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-white/10 transition"
+            className="absolute left-0 md:left-2 top-1/2 -translate-y-1/2 p-2 flex items-center justify-center transition"
           >
-            <span className="text-white text-lg">‹</span>
+            <span className="text-white text-3xl md:text-4xl select-none">‹</span>
           </button>
 
-          <div className="flex-1">
+          {/* TREŚĆ OPINII */}
+          <div className="flex-1 px-4">
             <p
-              className={`italic text-base sm:text-lg md:text-xl px-4 sm:px-6 py-4 bg-white/10 backdrop-blur-md rounded-2xl transition-all duration-700 ${
+              className={`italic text-base sm:text-lg md:text-xl px-4 py-3 md:px-6 md:py-4 bg-white/10 backdrop-blur-md rounded-2xl mx-auto transition-all duration-700 ${
                 showOpinion ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
               }`}
+              style={{ maxWidth: "600px" }}
             >
               “{opinions[currentOpinion].text}”
             </p>
             <p className="mt-2 font-semibold">{opinions[currentOpinion].author}</p>
           </div>
 
+          {/* STRZAŁKA PRAWA */}
           <button
             onClick={() => changeOpinion(1)}
-            className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-white/10 transition"
+            className="absolute right-0 md:right-2 top-1/2 -translate-y-1/2 p-2 flex items-center justify-center transition"
           >
-            <span className="text-white text-lg">›</span>
+            <span className="text-white text-3xl md:text-4xl select-none">›</span>
           </button>
         </div>
       </div>
