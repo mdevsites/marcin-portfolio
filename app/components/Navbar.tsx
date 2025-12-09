@@ -113,8 +113,8 @@ export default function Navbar() {
         <div className="hidden md:flex gap-10">
           <NavItem label="Strona Główna" href="/#home" active={active === "home"} scrolled={scrolled} />
           <NavItem label="Usługi" href="/#services" active={active === "services"} scrolled={scrolled} />
-          <NavItem label="Portfolio" href="/portfolio" />
-          <NavItem label="Kontakt" href="/kontakt" />
+          <NavItem label="Portfolio" href="/portfolio" active={active === "portfolio"} scrolled={scrolled} />
+          <NavItem label="Kontakt" href="/kontakt" external />
         </div>
 
         {/* HAMBURGER */}
@@ -124,18 +124,30 @@ export default function Navbar() {
             className="flex flex-col w-10 h-10 justify-between p-1"
           >
             <span
-              className={`block h-1 w-full bg-gray-700 rounded-full transition-transform duration-300 ${
-                isOpen ? "rotate-45 translate-y-3" : ""
+              className={`block h-1 w-full rounded-full transition-all duration-300 ${
+                isOpen
+                  ? "bg-white rotate-45 translate-y-3"
+                  : scrolled
+                  ? "bg-gray-700"
+                  : "bg-white"
               }`}
             />
             <span
-              className={`block h-1 w-full bg-gray-700 rounded-full transition-opacity duration-300 ${
-                isOpen ? "opacity-0" : ""
+              className={`block h-1 w-full rounded-full transition-all duration-300 ${
+                isOpen
+                  ? "bg-white opacity-0"
+                  : scrolled
+                  ? "bg-gray-700"
+                  : "bg-white"
               }`}
             />
             <span
-              className={`block h-1 w-full bg-gray-700 rounded-full transition-transform duration-300 ${
-                isOpen ? "-rotate-45 -translate-y-3" : ""
+              className={`block h-1 w-full rounded-full transition-all duration-300 ${
+                isOpen
+                  ? "bg-white -rotate-45 -translate-y-3"
+                  : scrolled
+                  ? "bg-gray-700"
+                  : "bg-white"
               }`}
             />
           </button>
@@ -149,11 +161,10 @@ export default function Navbar() {
             scrolled ? "bg-white/80 backdrop-blur-md" : "bg-white/20 backdrop-blur-sm"
           }`}
         >
-          <NavItem label="Strona Główna" href="/#home" active={active === "home"} scrolled={scrolled} />
-<NavItem label="Usługi" href="/#services" active={active === "services"} scrolled={scrolled} />
-<NavItem label="Portfolio" href="/portfolio" active={active === "portfolio"} scrolled={scrolled} />
-<NavItem label="Kontakt" href="/kontakt" external />
-
+          <NavItem label="Strona Główna" href="/#home" active={active === "home"} scrolled={scrolled} onClick={() => setIsOpen(false)} />
+          <NavItem label="Usługi" href="/#services" active={active === "services"} scrolled={scrolled} onClick={() => setIsOpen(false)} />
+          <NavItem label="Portfolio" href="/portfolio" active={active === "portfolio"} scrolled={scrolled} onClick={() => setIsOpen(false)} />
+          <NavItem label="Kontakt" href="/kontakt" external onClick={() => setIsOpen(false)} />
         </div>
       )}
     </nav>
