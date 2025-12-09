@@ -94,10 +94,10 @@ export default function Hero() {
         <div className="absolute w-32 h-32 bg-white/10 rounded-full top-1/2 left-1/2 animate-pulse"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto flex flex-col md:flex-row items-center md:justify-between h-full z-10">
+      <div className="relative max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center md:justify-between h-full z-10">
         {/* LEWA STRONA */}
         <div className="text-center md:text-left md:max-w-xl space-y-6 w-full md:w-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white">
             Tworzymy nowoczesne strony internetowe
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-white/90">
@@ -121,11 +121,11 @@ export default function Hero() {
         </div>
 
         {/* PRAWA STRONA */}
-        <div className="mb-6 md:mb-0 md:ml-12 md:flex-1 flex justify-center w-full max-w-md">
+        <div className="mb-6 md:mb-0 md:ml-12 md:flex-1 flex justify-center w-full max-w-xs sm:max-w-sm md:max-w-md">
           <img
             src="/hero_illustration.png"
             alt="Hero illustration"
-            className="w-full max-w-xs sm:max-w-sm md:max-w-md rounded-lg shadow-xl transform transition-transform hover:-translate-y-1"
+            className="w-full rounded-lg shadow-xl transform transition-transform hover:-translate-y-1"
           />
         </div>
       </div>
