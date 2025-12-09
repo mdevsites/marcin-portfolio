@@ -19,33 +19,36 @@ interface NavItemProps {
   external?: boolean;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ label, href, active, scrolled, onClick, external }) => {
+const NavItem: React.FC<NavItemProps> = ({
+  label,
+  href,
+  active,
+  scrolled,
+  onClick,
+  external,
+}) => {
   const pathname = usePathname();
 
   const handleClick = (e: React.MouseEvent) => {
     if (!external && href.startsWith("#") && pathname !== "/") {
-      // jeśli jesteśmy na innej stronie niż główna, przekieruj do głównej z anchor
       e.preventDefault();
       window.location.href = `/${href}`;
     }
     if (onClick) onClick();
   };
 
+  // jeśli to "Kontakt", nadaj wygląd przycisku
   if (external) {
     return (
       <Link
         href={href}
         onClick={onClick}
-        className={`relative px-5 py-2 transition-colors duration-300
-          ${active ? "font-bold" : "font-medium"}
-          ${scrolled ? "text-gray-900" : "text-white"}
-          text-lg md:text-xl tracking-wide group ${poppins.className}`}
+        className={`px-6 py-2 rounded-2xl font-semibold text-white text-lg md:text-xl tracking-wide
+          bg-gradient-to-r from-blue-500 to-indigo-500
+          hover:from-indigo-500 hover:to-blue-500
+          transition-colors duration-300 ${poppins.className}`}
       >
         {label}
-        <span
-          className={`absolute left-1/2 bottom-0 h-1 w-1 bg-blue-400 rounded-full transform -translate-x-1/2 scale-0 transition-transform duration-300
-            ${active ? "scale-100" : "group-hover:scale-100"}`}
-        ></span>
       </Link>
     );
   }
