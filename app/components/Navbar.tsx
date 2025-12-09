@@ -1,192 +1,172 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { Poppins } from "next/font/google";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-interface Opinion {
-  text: string;
-  author: string;
-}
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
-interface Tile {
-  value?: string;
-  icon?: string;
+interface NavItemProps {
   label: string;
+  href: string;
+  active?: boolean;
+  scrolled?: boolean;
+  onClick?: () => void;
+  external?: boolean;
 }
 
-export default function Hero() {
-  const opinions: Opinion[] = [
-    { text: "Profesjonalizm i szybka realizacja projektów!", author: "Jan K." },
-    { text: "Świetna współpraca i elastyczne podejście!", author: "Maria L." },
-    { text: "Konkurencyjne ceny i wysoka jakość.", author: "Piotr S." },
-    { text: "Szybkie wdrożenia i przyjemny kontakt!", author: "Anna W." },
-    { text: "Fantastyczne projekty i świetny kontakt!", author: "Tomasz R." },
-  ];
+const NavItem: React.FC<NavItemProps> = ({
+  label,
+  href,
+  active,
+  scrolled,
+  onClick,
+  external,
+}) => {
+  const pathname = usePathname();
 
-  const [currentOpinion, setCurrentOpinion] = useState(0);
-  const [showOpinion, setShowOpinion] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowOpinion(false);
-      setTimeout(() => {
-        setCurrentOpinion((prev) => (prev + 1) % opinions.length);
-        setShowOpinion(true);
-      }, 500);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const nextOpinion = () => {
-    setShowOpinion(false);
-    setTimeout(() => {
-      setCurrentOpinion((currentOpinion + 1) % opinions.length);
-      setShowOpinion(true);
-    }, 500);
+  const handleClick = (e: React.MouseEvent) => {
+    if (!external && href.startsWith("#") && pathname !== "/") {
+      e.preventDefault();
+      window.location.href = `/${href}`;
+    }
+    if (onClick) onClick();
   };
 
-  const prevOpinion = () => {
-    setShowOpinion(false);
-    setTimeout(() => {
-      setCurrentOpinion((currentOpinion - 1 + opinions.length) % opinions.length);
-      setShowOpinion(true);
-    }, 500);
-  };
+  // jeśli to "Kontakt", nadaj wygląd przycisku
+  if (external) {
+    return (
+      <Link
+        href={href}
+        onClick={onClick}
+        className={`px-6 py-2 rounded-2xl font-semibold text-white text-lg md:text-xl tracking-wide
+          bg-gradient-to-r from-blue-500 to-indigo-500
+          hover:from-indigo-500 hover:to-blue-500
+          transition-colors duration-300 ${poppins.className}`}
+      >
+        {label}
+      </Link>
+    );
+  }
 
-  const stats: Tile[] = [
-    { value: "50+", label: "Zrealizowanych projektów" },
-    { value: "5", label: "Lat doświadczenia" },
-    { value: "24 / 7", label: "Wsparcie techniczne" },
-  ];
+  return (
+    <a
+      href={href}
+      onClick={handleClick}
+      className={`relative px-5 py-2 transition-colors duration-300
+        ${active ? "font-bold" : "font-medium"}
+        ${scrolled ? "text-gray-900" : "text-white"}
+        text-lg md:text-xl tracking-wide group ${poppins.className}`}
+    >
+      {label}
+      <span
+        className={`absolute left-1/2 bottom-0 h-1 w-1 bg-blue-400 rounded-full transform -translate-x-1/2 scale-0 transition-transform duration-300
+          ${active ? "scale-100" : "group-hover:scale-100"}`}
+      ></span>
+    </a>
+  );
+};
 
-  const icons: Tile[] = [
-    { icon: "⚡", label: "Szybkie wdrożenia" },
-    { icon: "💰", label: "Konkurencyjne ceny" },
-    { icon: "✅", label: "Profesjonalizm" },
-  ];
-
-  const [showIcons, setShowIcons] = useState(false);
-  const [animating, setAnimating] = useState(false);
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimating(true);
-      setTimeout(() => {
-        setShowIcons((prev) => !prev);
-        setAnimating(false);
-      }, 600);
-    }, 8000);
-    return () => clearInterval(interval);
+    const handleScroll = () => {
+      const sections = ["home", "services", "portfolio"];
+      const scrollPos = window.scrollY + 120;
+
+      sections.forEach((section) => {
+        const el = document.getElementById(section);
+        if (el && scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight) {
+          setActive(section);
+        }
+      });
+
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <section
-      id="home"
-      className="relative flex flex-col justify-center overflow-hidden pt-28 px-4 md:px-6 min-h-screen"
-      style={{
-        backgroundImage:
-          "linear-gradient(to bottom, #0b1220 0%, #1e3a8a 60%, #60A5FA 100%)",
-      }}
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${
+        scrolled ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-white/20 backdrop-blur-sm"
+      } rounded-b-lg`}
     >
-      {/* CHMURKI W TLE */}
-      <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-        <div className="absolute w-64 h-64 bg-white/10 rounded-full -top-16 -left-16 animate-pulse"></div>
-        <div className="absolute w-48 h-48 bg-white/10 rounded-full -bottom-20 right-10 animate-pulse"></div>
-        <div className="absolute w-32 h-32 bg-white/10 rounded-full top-1/2 left-1/2 animate-pulse"></div>
-      </div>
-
-      <div className="relative max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center md:justify-between h-full z-10 w-full">
-        {/* LEWA STRONA */}
-        <div className="text-center md:text-left md:max-w-xl space-y-6 w-full md:w-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-white break-words">
-            Tworzymy nowoczesne strony internetowe
-          </h1>
-          <p className="text-lg md:text-2xl text-white/90">
-            Profesjonalne rozwiązania webowe dopasowane do Twojego biznesu
-          </p>
-
-          {/* STATYSTYKI / IKONY */}
-          <div className="mt-10 flex flex-wrap justify-center md:justify-start gap-4">
-            {(showIcons ? icons : stats).map((item, idx) => (
-              <div
-                key={idx}
-                className="relative w-36 py-4 px-2 flex flex-col items-center justify-center text-center bg-white/10 rounded-lg"
-              >
-                <div
-                  className={`text-3xl md:text-4xl font-bold text-white transition-all duration-700 ${
-                    animating ? "opacity-50" : "opacity-100"
-                  }`}
-                >
-                  {item.value ?? item.icon}
-                </div>
-                <div className="mt-2 text-sm text-white/90">{item.label}</div>
-              </div>
-            ))}
-          </div>
+      <div className="flex items-center h-20 justify-between px-6">
+        {/* LOGO */}
+        <div className="flex-shrink-0">
+          <Link href="/" className="cursor-pointer">
+            <img src="/logotyp2.png" alt="M.dev" className="h-12 w-auto" />
+          </Link>
         </div>
 
-        {/* PRAWA STRONA */}
-        <div className="mb-6 md:mb-0 md:ml-12 flex justify-center md:flex-1 w-full max-w-xs sm:max-w-sm md:max-w-md">
-          <img
-            src="/hero_illustration.png"
-            alt="Hero illustration"
-            className="w-full rounded-lg shadow-xl transform transition-transform hover:-translate-y-1"
-          />
+        {/* MENU CENTER */}
+        <div className="hidden md:flex gap-10">
+          <NavItem label="Strona Główna" href="/#home" active={active === "home"} scrolled={scrolled} />
+          <NavItem label="Usługi" href="/#services" active={active === "services"} scrolled={scrolled} />
+          <NavItem label="Portfolio" href="/portfolio" active={active === "portfolio"} scrolled={scrolled} />
+          <NavItem label="Kontakt" href="/kontakt" external />
         </div>
-      </div>
 
-      {/* OPINIE */}
-      <div className="mt-12 flex justify-center z-20 px-4 w-full">
-        <div className="relative bg-transparent px-4 sm:px-8 py-6 rounded-2xl text-white text-center flex items-center max-w-7xl w-full mx-auto overflow-hidden">
+        {/* HAMBURGER */}
+        <div className="md:hidden flex items-center">
           <button
-            onClick={prevOpinion}
-            className="absolute left-1 top-1/2 transform -translate-y-1/2 p-2 rounded-full hover:bg-white/10 transition"
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex flex-col w-10 h-10 justify-between p-1"
           >
-            <svg
-              className="w-5 h-5 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-
-          <div className="mx-auto text-center flex-1">
-            <p
-              className={`italic text-lg md:text-xl px-6 py-4 rounded-2xl bg-white/10 backdrop-blur-md shadow-md inline-block transform transition-all duration-700 ease-out ${
-                showOpinion
-                  ? "opacity-100 translate-y-0 scale-100"
-                  : "opacity-0 -translate-y-6 scale-90"
+            <span
+              className={`block h-1 w-full rounded-full transition-all duration-300 ${
+                isOpen
+                  ? "bg-white rotate-45 translate-y-3"
+                  : scrolled
+                  ? "bg-gray-700"
+                  : "bg-white"
               }`}
-            >
-              “{opinions[currentOpinion].text}”
-            </p>
-            <p className="mt-2 font-semibold text-white">
-              {opinions[currentOpinion].author}
-            </p>
-          </div>
-
-          <button
-            onClick={nextOpinion}
-            className="absolute right-1 top-1/2 transform -translate-y-1/2 p-2 rounded-full hover:bg-white/10 transition"
-          >
-            <svg
-              className="w-5 h-5 text-white"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
+            />
+            <span
+              className={`block h-1 w-full rounded-full transition-all duration-300 ${
+                isOpen
+                  ? "bg-white opacity-0"
+                  : scrolled
+                  ? "bg-gray-700"
+                  : "bg-white"
+              }`}
+            />
+            <span
+              className={`block h-1 w-full rounded-full transition-all duration-300 ${
+                isOpen
+                  ? "bg-white -rotate-45 -translate-y-3"
+                  : scrolled
+                  ? "bg-gray-700"
+                  : "bg-white"
+              }`}
+            />
           </button>
         </div>
       </div>
-    </section>
+
+      {/* MOBILE MENU */}
+      {isOpen && (
+        <div
+          className={`md:hidden flex flex-col items-center gap-4 py-6 border-t border-gray-200 rounded-b-lg transition-colors duration-500 ${
+            scrolled ? "bg-white/80 backdrop-blur-md" : "bg-white/20 backdrop-blur-sm"
+          }`}
+        >
+          <NavItem label="Strona Główna" href="/#home" active={active === "home"} scrolled={scrolled} onClick={() => setIsOpen(false)} />
+          <NavItem label="Usługi" href="/#services" active={active === "services"} scrolled={scrolled} onClick={() => setIsOpen(false)} />
+          <NavItem label="Portfolio" href="/portfolio" active={active === "portfolio"} scrolled={scrolled} onClick={() => setIsOpen(false)} />
+          <NavItem label="Kontakt" href="/kontakt" external onClick={() => setIsOpen(false)} />
+        </div>
+      )}
+    </nav>
   );
 }
