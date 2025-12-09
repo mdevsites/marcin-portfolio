@@ -45,7 +45,7 @@ export default function Hero() {
   const stats: Tile[] = [
     { value: "50+", label: "Zrealizowanych projektów" },
     { value: "5", label: "Lat\ndoświadczenia" },
-    { value: "24 / 7", label: "Wsparcie\ntechniczne" },
+    { value: "24/7", label: "Wsparcie\ntechniczne" },
   ];
 
   const icons: Tile[] = [
@@ -134,8 +134,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* OPINIE */}
-      <div className="mt-8 md:mt-12 flex justify-center z-20 px-4">
+      {/* OPINIE - DELIKATNIE NIŻEJ */}
+      <div className="relative top-[-1.5rem] md:top-[-2rem] flex justify-center z-20 px-4">
         <div className="relative w-full max-w-md md:max-w-3xl px-2 md:px-0 py-6 text-white text-center flex items-center">
           {/* STRZAŁKA LEWA */}
           <button
