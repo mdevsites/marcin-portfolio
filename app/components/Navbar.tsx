@@ -114,7 +114,7 @@ export default function Navbar() {
           <NavItem label="Strona Główna" href="/#home" active={active === "home"} scrolled={scrolled} />
           <NavItem label="Usługi" href="/#services" active={active === "services"} scrolled={scrolled} />
           <NavItem label="Portfolio" href="/portfolio" />
-          <NavItem label="Kontakt" href="/kontakt" external />
+          <NavItem label="Kontakt" href="/kontakt" />
         </div>
 
         {/* HAMBURGER */}
