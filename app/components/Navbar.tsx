@@ -149,10 +149,11 @@ export default function Navbar() {
             scrolled ? "bg-white/80 backdrop-blur-md" : "bg-white/20 backdrop-blur-sm"
           }`}
         >
-          <NavItem label="Home" href="/#home" active={active === "home"} scrolled={scrolled} onClick={() => setIsOpen(false)} />
-          <NavItem label="Usługi" href="/#services" active={active === "services"} scrolled={scrolled} onClick={() => setIsOpen(false)} />
-          <NavItem label="Portfolio" href="/#portfolio" active={active === "portfolio"} scrolled={scrolled} onClick={() => setIsOpen(false)} />
-          <NavItem label="Kontakt" href="/kontakt" external onClick={() => setIsOpen(false)} />
+          <NavItem label="Strona Główna" href="/#home" active={active === "home"} scrolled={scrolled} />
+<NavItem label="Usługi" href="/#services" active={active === "services"} scrolled={scrolled} />
+<NavItem label="Portfolio" href="/portfolio" active={active === "portfolio"} scrolled={scrolled} />
+<NavItem label="Kontakt" href="/kontakt" external />
+
         </div>
       )}
     </nav>
