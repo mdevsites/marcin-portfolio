@@ -86,7 +86,7 @@ export default function Hero() {
       </div>
 
       {/* ZAWARTOŚĆ HERO */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center md:justify-between w-full z-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 flex flex-col-reverse md:flex-row items-center md:justify-between w-full z-10">
         {/* LEWA STRONA - TEKST */}
         <div className="text-center md:text-left md:max-w-xl space-y-6 mt-10 md:mt-0 w-full">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white">
@@ -97,11 +97,12 @@ export default function Hero() {
           </p>
 
           {/* STATYSTYKI / IKONY */}
-          <div className="mt-10 flex flex-col space-y-4 md:flex-row md:space-x-6 md:space-y-0 justify-center md:justify-start">
+          {/* Desktop: rząd, Mobile: pozioma karuzela */}
+          <div className="mt-10 flex md:flex-row flex-row md:space-x-6 space-x-4 overflow-x-auto md:overflow-visible py-2">
             {activeTiles.map((item, i) => (
               <div
                 key={i}
-                className="w-full md:w-28 py-4 px-2 text-center flex flex-col items-center justify-center"
+                className="flex-shrink-0 w-28 py-4 px-2 text-center flex flex-col items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm mr-2 md:mr-0"
               >
                 <div
                   className={`transition-all duration-700 ${
