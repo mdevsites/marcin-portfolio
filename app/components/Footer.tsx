@@ -13,7 +13,7 @@ export default function Footer() {
 
       <div className="flex justify-center gap-5 text-2xl">
         <a
-          href="https://github.com"
+          href="https://github.com/mdevsites"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-200 hover:text-white transition-colors duration-300"
@@ -21,7 +21,7 @@ export default function Footer() {
           <FaGithub />
         </a>
         <a
-          href="https://linkedin.com"
+          href="https://www.linkedin.com/in/marcin-chrąchol-5a9a7b21b"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-200 hover:text-white transition-colors duration-300"
@@ -29,7 +29,7 @@ export default function Footer() {
           <FaLinkedin />
         </a>
         <a
-          href="mailto:kontakt@marcin.dev"
+          href="mailto:m.devkontakt@gmail.com"
           className="text-gray-200 hover:text-white transition-colors duration-300"
         >
           <FaEnvelope />
