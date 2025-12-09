@@ -81,10 +81,10 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 px-4 sm:px-6"
+      className="relative flex flex-col justify-center overflow-hidden pt-28 px-4 md:px-6 min-h-screen"
       style={{
         backgroundImage:
-          "linear-gradient(to bottom, #60A5FA 0%, #9FD9FF 40%, #E6F7FF 100%)",
+          "linear-gradient(to bottom, #0b1220 0%, #1e3a8a 60%, #60A5FA 100%)",
       }}
     >
       {/* CHMURKI W TLE */}
@@ -94,34 +94,38 @@ export default function Hero() {
         <div className="absolute w-32 h-32 bg-white/10 rounded-full top-1/2 left-1/2 animate-pulse"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center md:justify-between h-full z-10">
+      <div className="relative max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center md:justify-between h-full z-10 w-full">
         {/* LEWA STRONA */}
         <div className="text-center md:text-left md:max-w-xl space-y-6 w-full md:w-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+          <h1 className="text-4xl md:text-6xl font-bold text-white break-words">
             Tworzymy nowoczesne strony internetowe
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-white/90">
+          <p className="text-lg md:text-2xl text-white/90">
             Profesjonalne rozwiązania webowe dopasowane do Twojego biznesu
           </p>
 
           {/* STATYSTYKI / IKONY */}
-          <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
+          <div className="mt-10 flex flex-wrap justify-center md:justify-start gap-4">
             {(showIcons ? icons : stats).map((item, idx) => (
               <div
                 key={idx}
-                className="w-32 py-4 px-2 flex flex-col items-center justify-center text-center bg-white/10 rounded-lg"
+                className="relative w-36 py-4 px-2 flex flex-col items-center justify-center text-center bg-white/10 rounded-lg"
               >
-                <div className="text-2xl md:text-3xl font-bold text-white">
+                <div
+                  className={`text-3xl md:text-4xl font-bold text-white transition-all duration-700 ${
+                    animating ? "opacity-50" : "opacity-100"
+                  }`}
+                >
                   {item.value ?? item.icon}
                 </div>
-                <div className="mt-1 text-sm text-white/90">{item.label}</div>
+                <div className="mt-2 text-sm text-white/90">{item.label}</div>
               </div>
             ))}
           </div>
         </div>
 
         {/* PRAWA STRONA */}
-        <div className="mb-6 md:mb-0 md:ml-12 md:flex-1 flex justify-center w-full max-w-xs sm:max-w-sm md:max-w-md">
+        <div className="mb-6 md:mb-0 md:ml-12 flex justify-center md:flex-1 w-full max-w-xs sm:max-w-sm md:max-w-md">
           <img
             src="/hero_illustration.png"
             alt="Hero illustration"
@@ -154,7 +158,7 @@ export default function Hero() {
 
           <div className="mx-auto text-center flex-1">
             <p
-              className={`italic text-base sm:text-lg md:text-xl px-4 py-3 rounded-2xl bg-white/10 backdrop-blur-md shadow-md inline-block transform transition-all duration-700 ease-out ${
+              className={`italic text-lg md:text-xl px-6 py-4 rounded-2xl bg-white/10 backdrop-blur-md shadow-md inline-block transform transition-all duration-700 ease-out ${
                 showOpinion
                   ? "opacity-100 translate-y-0 scale-100"
                   : "opacity-0 -translate-y-6 scale-90"
