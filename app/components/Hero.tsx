@@ -101,7 +101,7 @@ export default function Hero() {
             {activeTiles.map((item, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 w-32 md:w-40 py-4 px-2 text-center flex flex-col items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm"
+                className="flex-shrink-0 w-28 sm:w-32 md:w-40 py-4 px-3 text-center flex flex-col items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm"
               >
                 <div
                   className={`transition-all duration-700 ${
@@ -166,7 +166,8 @@ export default function Hero() {
 
       {/* STRZAŁKA DOWIEDZ SIĘ WIĘCEJ */}
       <div
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group"
+        className="absolute bottom-0 md:bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group z-50"
+        style={{ marginTop: "2rem" }}
         onClick={() =>
           document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })
         }
